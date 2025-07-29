@@ -90,8 +90,8 @@ passport.use(
   new SamlStrategy(
     {
       entryPoint: "https://idp.bits-pilani.ac.in/idp/profile/SAML2/Redirect/SSO",
-      issuer: "https://student-backend-ga41.onrender.com/metadata",
-      callbackUrl: "https://student-backend-ga41.onrender.com/sso/callback",
+      issuer: "http://localhost:5000/metadata",
+      callbackUrl: "http://localhost:5000/sso/callback",
       cert: idpCertificate, // IdP cert for verifying incoming SAMLResponse
       privateCert: spPrivateKey, // SP private key for signing AuthnRequest
       decryptionPvk: spPrivateKey, // Optional: if IdP encrypts assertions
@@ -187,7 +187,7 @@ app.get("/metadata", (req, res) => {
   const metadata = `
 <md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
                      xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
-                    entityID="https://student-backend-ga41.onrender.com/metadata"
+                    entityID="http://localhost:5000/metadata"
                      ID="${ID}">
 
   <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"
@@ -229,7 +229,7 @@ X/RdLh3KB1VqqDDiLSKoyAo4gbJygdm2VkwexT8DP6LMZh0DBGIqW6VsAsr6cuY=
 
     <md:AssertionConsumerService index="1" isDefault="true"
       Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
-      Location="https://student-backend-ga41.onrender.com/sso/callback"/>
+      Location="http://localhost:5000/sso/callback"/>
 
   </md:SPSSODescriptor>
 </md:EntityDescriptor>

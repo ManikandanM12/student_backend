@@ -136,14 +136,14 @@ app.get(
 app.post(
   "/sso/callback",
   passport.authenticate("saml", {
-    failureRedirect: `${process.env.FRONTEND_URL}/login?error=unauthorized`,
+    failureRedirect: `friendly-churros-441590.netlify.app/login?error=unauthorized`,
     failureFlash: true,
   }),
   (req, res) => {
     const token = generateToken(req.user);
     req.session.jwt = token;
 
-    res.redirect(`${process.env.FRONTEND_URL}/home`);
+    res.redirect(`friendly-churros-441590.netlify.app/home`);
   }
 );
 
